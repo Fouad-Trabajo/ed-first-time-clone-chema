@@ -1,15 +1,13 @@
 package com.iesam.firsttime.features.vote.domain;
 
 
-import com.iesam.firsttime.features.vote.data.Stub2AppConfigDataRepository;
-import com.iesam.firsttime.features.vote.data.Stub3AppConfigDataRepository;
-import com.iesam.firsttime.features.vote.data.StubAppConfigDataRepository;
+import com.iesam.firsttime.features.vote.data.StubEquals5AppConfigDataRepository;
+import com.iesam.firsttime.features.vote.data.StubNot5AppConfigDataRepository;
+import com.iesam.firsttime.features.vote.data.StubNullAppConfigDataRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class VoteAppUseCaseTest {
 
@@ -26,9 +24,9 @@ class VoteAppUseCaseTest {
     }
 
     @Test
-    public void cuandoObetengoNuloEntoncesNoMuestroElMensaje() {
+    public void cuandoObetengoNuloEntoncesNoMuestroElMensajeEsFalse() {
         //Given: se declaran variables.
-        VoteAppUseCase voteAppUseCase = new VoteAppUseCase(new StubAppConfigDataRepository());
+        VoteAppUseCase voteAppUseCase = new VoteAppUseCase(new StubNullAppConfigDataRepository());
 
         //When
         boolean voteMessage= voteAppUseCase.execute();
@@ -39,9 +37,9 @@ class VoteAppUseCaseTest {
     }
 
     @Test
-    public void cuandoObtengoUnCincoEntoncesMuestroElMensaje() {
+    public void cuandoObtengoUnCincoEntoncesMuestroElMensajeEsTrue() {
         //Given: se declaran variables.
-        VoteAppUseCase voteAppUseCase = new VoteAppUseCase(new Stub2AppConfigDataRepository());
+        VoteAppUseCase voteAppUseCase = new VoteAppUseCase(new StubEquals5AppConfigDataRepository());
 
 
         //When
@@ -54,9 +52,9 @@ class VoteAppUseCaseTest {
 
 
     @Test
-    public void cuandoObtengoUnNumeroDistintoDeCincoNoMuestroElMensaje() {
+    public void cuandoObtengoUnNumeroDistintoDeCincoNoMuestroElMensajeEsFalse() {
         //Given: se declaran variables.
-        VoteAppUseCase voteAppUseCase = new VoteAppUseCase(new Stub3AppConfigDataRepository());
+        VoteAppUseCase voteAppUseCase = new VoteAppUseCase(new StubNot5AppConfigDataRepository());
 
 
         //When
